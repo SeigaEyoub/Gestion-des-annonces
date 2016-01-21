@@ -1,0 +1,24 @@
+product_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: ProductBundle:Default:index }
+
+hello_the_world:
+    path:     /test
+    defaults: { _controller: ProductBundle:Advert:testrouting }
+
+Produc_view_slug:
+        path:     /reponse
+        defaults:  { _controller: ProductBundle:Advert:viewSlug }
+        # requirements:
+           #     year:   \d{4}
+            #    format: html|xml
+
+
+
+Product_add:
+    path:     /add
+    defaults:  { _controller: ProductBundle:Advert:add }
+
+Produc_view:
+    path:     /{id}
+    defaults:  { _controller: ProductBundle:Advert:view }

@@ -1,0 +1,16 @@
+oc_platform:
+    resource: "@OCPlatformBundle/Resources/config/routing.yml"
+    prefix:   /advert/
+
+# app/config/routing.yml
+
+product:
+    resource: "@ProductBundle/Resources/config/routing.yml"
+    prefix:   /ecommerce/
+
+# …Les variables globales de twigs
+
+#twig:
+    # …
+   # globals:
+        #webmaster: moi-même

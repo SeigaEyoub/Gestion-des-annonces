@@ -1,0 +1,25 @@
+oc_platform_test:
+    pattern:  /test
+    defaults: { _controller: OCPlatformBundle:Advert:hello }
+
+
+
+
+oc_platform_view:
+    pattern:  /menu
+    defaults: { _controller: OCPlatformBundle:Advert:menu }
+
+
+
+oc_platform_add:
+    pattern:  /add
+    defaults: { _controller: OCPlatformBundle:Advert:add }
+
+c_platform_viewAdvert:
+    pattern:  /annonces
+    defaults: { _controller: OCPlatformBundle:Advert:viewAdverts }
+
+
+oc_platform_homepage:
+    pattern:  /{page}
+    defaults: { _controller: OCPlatformBundle:Advert:index }
