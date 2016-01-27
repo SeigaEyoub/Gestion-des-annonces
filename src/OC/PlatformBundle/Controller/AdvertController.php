@@ -3,12 +3,11 @@
 
 namespace OC\PlatformBundle\Controller;
 
-
-use OC\PlatformBundle\Entity\Image;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use OC\PlatformBundle\Entity\Advert;
 use OC\PlatformBundle\Form\AdvertType;
+
 
 class AdvertController extends Controller
 {
@@ -25,9 +24,10 @@ class AdvertController extends Controller
         // On récupère notre objet Paginator
         $listAdverts = $this->getDoctrine()
             ->getManager()
-            ->getRepository('OCPlatformBundle:Advert')
-            ->getAdverts($page, $nbPerPage)
+            ->getRepository('OCPlatformBundle:Advert')->getAdverts($page,$nbPerPage)
+        // ->findAll()
         ;
+
 
         // On calcule le nombre total de pages grâce au count($listAdverts) qui retourne le nombre total d'annonces
         $nbPages = ceil(count($listAdverts)/$nbPerPage);
@@ -37,12 +37,19 @@ class AdvertController extends Controller
             throw $this->createNotFoundException("La page ".$page." n'existe pas.");
         }
 
+
         // On donne toutes les informations nécessaires à la vue
-        return $this->render('OCPlatformBundle:Default:index.html.twig', array(
+       return $this->render('OCPlatformBundle:Default:index.html.twig', array(
             'listAdverts' => $listAdverts,
             'nbPages'     => $nbPages,
             'page'        => $page
         ));
+
+       /* $paginator  = $this->get('knp_paginator')->paginate(
+            $listAdverts,1,$nbPerPage/*limit per page
+        );
+        return $this->render('OCPlatformBundle:Default:index.html.twig', array('pagination' => $paginator));
+        */
     }
     public function viewAction($id)
     {

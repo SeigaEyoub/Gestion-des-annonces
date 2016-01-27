@@ -1,20 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
     <title>Pages des annonces</title>
+    <style>
+        .spacer{
+            padding: 10% 10%;
+        }
+        .spacer0{
+            padding: 2% 2%;
+        }
+    </style>
 </head>
 <body>
+<div style="background-color: #f9ecec" class="container  col-md-8 col-md-push-2 spacer ">
 <h1>Annonces</h1>
+    <table class="table-striped">
+        <tr>
+            {# sorting of properties based on query components #}
+            <th class="sorted">Titre</th>
+            <th class="sorted" >Autheur</th>
+            <th class="sorted" >Contenu</th>
+            <th>Date</th>
+        </tr>
 
-<h2>Listes des annonces</h2>
+        {# table body #}
+        {% for article in listAdverts %}
+            <tr {% if loop.index is odd %}class="color"{% endif %}>
+                <td >{{ article.title }}</td>
+                <td >{{ article.author }}</td>
+                <td >{{ article.content }}</td>
+
+                <td>{{ article.date | date('Y-m-d') }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+
 <ul class="pagination">
     {# On utilise la fonction range(a, b) qui crée un tableau de valeurs entre a et b #}
     {% for p in range(1, nbPages) %}
         <li{% if p == page %} class="active"{% endif %}>
-            <a href="{{ path('oc_platform_home', {'page': p}) }}">{{ p }}</a>
+            <a href="{{ path('oc_platform_index', {'page': p}) }}">{{ p }}</a>
         </li>
     {% endfor %}
+
 </ul>
+    </div>
+</div>
 </body>
 </html>
 
